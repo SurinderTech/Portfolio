@@ -146,10 +146,7 @@ vercel --prod
 - **Phone/WhatsApp:** +91 97974 86509
 - **Location:** Punjab, India
 
-## 🎨 Design Reference
-- Inspired by: https://parthh.in
-- Style: Premium dark SaaS, NOT a traditional portfolio
-- Key elements: Rotating wheel, dual marquee, VENTURE SHOWCASE, THE MAGIC BEHIND
+
 
 ## 📦 Packages Used
 - `next` 14.2.3
