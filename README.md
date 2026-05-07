@@ -141,7 +141,7 @@ vercel --prod
 # Start command: uvicorn main:app --host 0.0.0.0 --port $PORT
 ```
 
-## 📱 Your Info (Pre-filled)
+## 📱 Your Info 
 - **Email:** surinderkumar3182@gmail.com
 - **Phone/WhatsApp:** +91 97974 86509
 - **Location:** Punjab, India
