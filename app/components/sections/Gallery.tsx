@@ -36,7 +36,7 @@ const TEX_H = Math.round(TEX_W * (FH - BW * 2) / (FW - BW * 2))
  * Cover-crop draw — identical to CSS object-fit: cover
  * Ensures image always fills the entire frame with no letterboxing
  */
-function drawCoverCrop(ctx, img, dw, dh) {
+function drawCoverCrop(ctx: CanvasRenderingContext2D, img: HTMLImageElement, dw: number, dh: number) {
   const srcAR = img.naturalWidth / img.naturalHeight
   const dstAR = dw / dh
   let sx = 0, sy = 0, sw = img.naturalWidth, sh = img.naturalHeight
@@ -51,7 +51,7 @@ function drawCoverCrop(ctx, img, dw, dh) {
 }
 
 function ChromeFrameStand() {
-  const mountRef = useRef(null)
+  const mountRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const container = mountRef.current
@@ -83,7 +83,7 @@ function ChromeFrameStand() {
     pmrem.compileEquirectangularShader()
     const envCvs = document.createElement('canvas')
     envCvs.width = 512; envCvs.height = 256
-    const ec = envCvs.getContext('2d')
+    const ec = envCvs.getContext('2d')!
     const grad = ec.createLinearGradient(0, 0, 0, 256)
     grad.addColorStop(0, '#ffffff')
     grad.addColorStop(0.15, '#f0f4ff')
@@ -159,12 +159,12 @@ function ChromeFrameStand() {
      *   - Async real-image load with cover-crop redraw
      *   - SRGBColorSpace for accurate colour reproduction
      */
-    function makePhotoTexture(photoIdx) {
+    function makePhotoTexture(photoIdx: number) {
       const photo = photos[photoIdx]
       const cvs = document.createElement('canvas')
       cvs.width = TEX_W
       cvs.height = TEX_H
-      const ctx = cvs.getContext('2d')
+      const ctx = cvs.getContext('2d')!
 
       // Colourful placeholder while real image loads
       const hue = 190 + (photoIdx * 37) % 140
@@ -232,7 +232,7 @@ function ChromeFrameStand() {
     )
 
     // ── L-arm bracket (same as doc2) ──────────────────────────────────────────
-    function makeArmBracket(fx, fz, angle, colY, frameEdgeY) {
+    function makeArmBracket(fx: number, fz: number, angle: number, colY: number, frameEdgeY: number) {
       for (const side of [-1, 1]) {
         const cornerLocalX = side * (FW / 2 - 0.15)
         const cWX = fx + cornerLocalX * Math.cos(angle)
@@ -331,7 +331,7 @@ function ChromeFrameStand() {
     }, STEP_MS)
 
     // ── RENDER LOOP ───────────────────────────────────────────────────────────
-    let rafId
+    let rafId: number
     function animate() {
       rafId = requestAnimationFrame(animate)
       currentRot += (targetRot - currentRot) * 0.048
@@ -383,7 +383,7 @@ function ChromeFrameStand() {
   )
 }
 
-export default function Gallery({ onOrder }) {
+export default function Gallery({ onOrder }: { onOrder: (service?: string) => void }) {
   return (
     <section id="about" className="py-24 border-t border-border/30 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">

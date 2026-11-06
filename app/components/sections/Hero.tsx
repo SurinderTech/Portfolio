@@ -242,7 +242,7 @@ function RightColumn() {
 }
 
 // ─── Main Hero ────────────────────────────────────────────────────────────────
-export default function Hero({ onOrder }) {
+export default function Hero({ onOrder }: { onOrder: () => void }) {
   const { displayed, lineIdx } = useTypewriter(TYPEWRITER_LINES)
   const colors = TYPEWRITER_LINES[lineIdx].colors
 
