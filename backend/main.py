@@ -4,14 +4,26 @@ from pydantic import BaseModel, EmailStr
 from typing import Optional
 import sqlite3
 import json
+import os
 from datetime import datetime
 
 app = FastAPI(title="Surinder Kumar Portfolio API", version="1.0.0")
 
-# CORS — allow Next.js frontend
+# CORS – allow Next.js frontend (localhost + Vercel preview URLs + custom domain)
+origins = [
+    "http://localhost:3000",
+    "https://localhost:3000",
+]
+
+# Allow a custom domain/Vercel URL set via environment variable
+ALLOWED_ORIGIN = os.getenv("ALLOWED_ORIGIN", "")
+if ALLOWED_ORIGIN:
+    origins.append(ALLOWED_ORIGIN)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://yourdomain.com"],
+    allow_origins=origins,
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

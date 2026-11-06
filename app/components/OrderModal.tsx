@@ -24,8 +24,9 @@ export default function OrderModal({ onClose, defaultService }: OrderModalProps)
 
   const handleSubmit = async () => {
     // POST to FastAPI: /order
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
     try {
-      await fetch('http://localhost:8000/order', {
+      await fetch(`${apiUrl}/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...form, service: selected }),

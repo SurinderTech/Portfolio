@@ -6,9 +6,17 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [sent, setSent] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // In production: POST to FastAPI backend
+    // POST to FastAPI backend /contact
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+    try {
+      await fetch(`${apiUrl}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      }).catch(() => {})
+    } catch {}
     setSent(true)
     setTimeout(() => setSent(false), 4000)
     setForm({ name: '', email: '', message: '' })
