@@ -20,15 +20,17 @@ const services = [
 
 ]
 
+type TypewriterLine = { text: string; colors: string[] }
+
 // ─── Typewriter hook ──────────────────────────────────────────────────────────
-function useTypewriter(lines, typingSpeed = 75, pauseMs = 1600, deleteSpeed = 35) {
+function useTypewriter(lines: TypewriterLine[], typingSpeed = 75, pauseMs = 1600, deleteSpeed = 35) {
   const [displayed, setDisplayed] = useState('')
   const [lineIdx, setLineIdx] = useState(0)
   const [phase, setPhase] = useState('typing')
 
   useEffect(() => {
     const line = lines[lineIdx].text
-    let timer
+    let timer: ReturnType<typeof setTimeout>
     if (phase === 'typing') {
       if (displayed.length < line.length) {
         timer = setTimeout(() => setDisplayed(line.slice(0, displayed.length + 1)), typingSpeed)
