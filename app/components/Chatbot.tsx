@@ -16,8 +16,8 @@ export default function Chatbot() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [bpReady, setBpReady] = useState(false)
-  const bottomRef = useRef(null)
-  const listenerRef = useRef(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
+  const listenerRef = useRef<((event: MessageEvent) => void) | null>(null)
 
   // ── Load Botpress inject script once on mount ─────────────────────────────
   useEffect(() => {
@@ -103,7 +103,7 @@ export default function Chatbot() {
     }
   }
 
-  const handleKey = (e) => {
+  const handleKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       send()
