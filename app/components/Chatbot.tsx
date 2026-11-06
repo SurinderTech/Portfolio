@@ -57,7 +57,7 @@ export default function Chatbot() {
     })
 
     // ── Listen for bot messages coming FROM Botpress ──────────────────────
-    const handler = (event) => {
+    const handler = (event: MessageEvent) => {
       // Botpress emits postMessage events for bot replies
       if (!event.data || typeof event.data !== 'object') return
 
