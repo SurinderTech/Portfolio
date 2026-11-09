@@ -4,15 +4,6 @@
 
 ## ✨ Features
 
-- **Dark Premium SaaS UI** — No generic AI slop, 100% custom design
-- **Rotating SVG Wheel** — Exact style from parthh.in reference
-- **Dual Red-Line Marquee** — Smooth infinite scrolling like parthh.in
-- **AI Chatbot** — Powered by Claude (Anthropic API), floating side widget
-- **Multi-step Order Flow** — 3-step modal with service selection
-- **Framer Motion Animations** — Fade-in, slide-up, hover scale, animated counters
-- **FastAPI Backend** — REST API with SQLite (scalable to PostgreSQL)
-- **Fully Responsive** — Mobile-first design
-
 ## 📁 Project Structure
 
 ```
